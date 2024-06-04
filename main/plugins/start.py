@@ -137,5 +137,5 @@ async def broadcast_(c, m):
 @Bot.on_message(filters.private & filters.command("users") & filters.reply)
 async def get_users(c, m):
     msg = await client.send_message(chat_id=message.chat.id, text=WAIT_MSG)
-    users = await get_all_users()
-    await msg.edit(f"{len(users)} users are using this bot")
+    all_users = await db.get_all_users()
+    await msg.edit(f"{len(all_users)} users are using this bot")
