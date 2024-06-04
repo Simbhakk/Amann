@@ -4,7 +4,6 @@ from .. import Bot
 from telethon import events, Button
 from pyrogram import filters,Client
 from pyrogram.types import Message
-
 from pyrogram.types import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
@@ -12,16 +11,10 @@ from pyrogram.types import (
     Message
 )
 # ------------------------------------> Added log channel
-from .configs import Config
-from .database import Database
+from main.plugins.configs import Config
+from main.plugins.database import Database
 import datetime
 
-BOT_USERNAME = Config.BOT_USERNAME
-BOT_TOKEN = Config.BOT_TOKEN
-API_ID = Config.API_ID
-API_HASH = Config.API_HASH
-LOG_CHANNEL = Config.LOG_CHANNEL
-BOT_OWNER = Config.BOT_OWNER
 db= Database(Config.DATABASE_URL, BOT_USERNAME)
 
 async def foo(bot, cmd):
