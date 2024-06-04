@@ -9,3 +9,6 @@ psutil
 opencv-python-headless
 python-decouple
 requests
+pymongo
+motor
+aiofiles
