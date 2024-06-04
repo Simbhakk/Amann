@@ -15,7 +15,7 @@ from main.plugins.configs import Config
 from main.plugins.database import Database
 import datetime
 
-
+WAIT_MSG = "Hi I am processing"
 db= Database(Config.DATABASE_URL, Config.BOT_USERNAME)
 
 async def foo(bot, cmd):
@@ -69,7 +69,7 @@ async def send_msg(user_id, message):
     except Exception as e:
         return 500, f"{user_id} : {traceback.format_exc()}\n"
 
-@Bot.on_message(filters.private & filters.command("broadcasting i") & filters.reply)
+@Bot.on_message(filters.private & filters.command("broadcasting") & filters.reply)
 async def broadcast_(c, m):
     all_users = await db.get_all_users()
     broadcast_msg = m.reply_to_message
@@ -133,3 +133,9 @@ async def broadcast_(c, m):
             quote=True
         )
     os.remove('broadcast.txt')
+
+@Bot.on_message(filters.private & filters.command("users") & filters.reply)
+async def get_users(c, m):
+    msg = await client.send_message(chat_id=message.chat.id, text=WAIT_MSG)
+    users = await get_all_users()
+    await msg.edit(f"{len(users)} users are using this bot")
