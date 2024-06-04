@@ -15,7 +15,8 @@ from main.plugins.configs import Config
 from main.plugins.database import Database
 import datetime
 
-db= Database(Config.DATABASE_URL, BOT_USERNAME)
+
+db= Database(Config.DATABASE_URL, Config.BOT_USERNAME)
 
 async def foo(bot, cmd):
     chat_id = cmd.from_user.id
